@@ -1,0 +1,88 @@
+services:
+  service-registry:
+    extends:
+      file: ./service-registry/docker-compose.yml
+      service: service-registry
+
+  config-server:
+    extends:
+      file: ./config-server/docker-compose.yml
+      service: config-server
+    depends_on:
+      - service-registry
+
+  user-service:
+    extends:
+      file: ./user-service/docker-compose.yml
+      service: user-service
+    depends_on:
+      - service-registry
+      - config-server
+      - db-user-service
+
+  db-user-service:
+    extends:
+      file: ./user-service/docker-compose.yml
+      service: db-user-service
+
+  accounts-service:
+    extends:
+      file: ./accounts-service/docker-compose.yml
+      service: accounts-service
+    depends_on:
+      - service-registry
+      - config-server
+      - db-accounts-service
+
+  db-accounts-service:
+    extends:
+      file: ./accounts-service/docker-compose.yml
+      service: db-accounts-service
+
+  agentname-service:
+    extends:
+      file: ./agentname-service/docker-compose.yml
+      service: agent-name-generator
+    depends_on:
+      - service-registry
+      - config-server
+
+  loan-service:
+    extends:
+      file: ./loan-service/docker-compose.yml
+      service: loan-service
+    depends_on:
+      - service-registry
+      - config-server
+      - db-loan-service
+
+  db-loan-service:
+    extends:
+      file: ./loan-service/docker-compose.yml
+      service: db-loan-service
+
+  transaction-service:
+    extends:
+      file: ./transaction-service/docker-compose.yml
+      service: transaction-service
+    depends_on:
+      - service-registry
+      - config-server
+      - db-transaction-service
+
+  db-transaction-service:
+    extends:
+      file: ./transaction-service/docker-compose.yml
+      service: db-transaction-service
+
+  api-gateway:
+    extends:
+      file: ./api-gateway/docker-compose.yml
+      service: api-gateway
+    depends_on:
+      - service-registry
+      - config-server
+
+networks:
+  microservices:
+    external: true

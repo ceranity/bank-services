@@ -1,0 +1,22 @@
+services:
+  config-server:
+    container_name: config-server
+    build: .
+    ports:
+      - "${CONFIG_SERVER_PORT}:${CONFIG_SERVER_PORT}"
+    environment:
+      EUREKA_HOST: service-registry
+      EUREKA_PORT: ${SERVICE_REGISTRY_PORT}
+      CONFIG_PORT: ${CONFIG_SERVER_PORT}
+      USER_SERVICE_PORT: ${USER_SERVICE_PORT}
+      DATABASE_HOST: db-user-service
+      DATABASE_PORT: ${DB_PORT}
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_USER: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    external: true

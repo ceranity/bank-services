@@ -1,0 +1,41 @@
+networks:
+  microservices:
+    external: true
+
+services:
+  transaction-service:
+    container_name: transaction-service
+    depends_on:
+      - db-transaction-service
+    build: .
+    ports:
+      - "${TRANSACTION_SERVICE_PORT}:${TRANSACTION_SERVICE_PORT}"
+    environment:
+      EUREKA_HOST: service-registry
+      EUREKA_PORT: ${SERVICE_REGISTRY_PORT}
+      CONFIG_HOST: config-server
+      CONFIG_PORT: ${CONFIG_SERVER_PORT}
+      PROFILE: ${PROFILE}
+      TRANSACTION_SERVICE_PORT: ${TRANSACTION_SERVICE_PORT}
+      DATABASE_HOST: db-transaction-service
+      DATABASE_PORT: ${DB_PORT}
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_USER: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_SCHEMA: public
+    networks:
+      - microservices
+
+  db-transaction-service:
+    container_name: db-transaction-service
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    expose:
+      - "${DB_PORT}"
+    networks:
+      - microservices

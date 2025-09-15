@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'spring-boot-services'
+    static_configs:
+      - targets: ['localhost:8080', 'localhost:8088', 'localhost:8082'] # Update with your service URLs

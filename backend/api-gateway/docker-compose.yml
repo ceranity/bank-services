@@ -1,0 +1,19 @@
+networks:
+  microservices:
+    external: true
+
+services:
+  api-gateway:
+    container_name: api-gateway
+    build: .
+    ports:
+      - "${API_GATEWAY_PORT}:${API_GATEWAY_PORT}"
+    environment:
+      EUREKA_HOST: service-registry
+      EUREKA_PORT: ${SERVICE_REGISTRY_PORT}
+      CONFIG_HOST: config-server
+      CONFIG_PORT: ${CONFIG_SERVER_PORT}
+      PROFILE: ${PROFILE}
+      API_GATEWAY_PORT: ${API_GATEWAY_PORT}
+    networks:
+      - microservices

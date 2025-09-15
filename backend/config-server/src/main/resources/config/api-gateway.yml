@@ -1,0 +1,38 @@
+server:
+  port: ${API_GATEWAY_PORT:8080}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+        - id: cards-service
+          uri: lb://cards-service
+          predicates:
+            - Path=/cards/**, /credit-cards/**
+        - id: accounts-service
+          uri: lb://accounts-service
+          predicates:
+            - Path=/accounts/**
+        - id: agent-name-generator
+          uri: lb://agent-name-generator
+          predicates:
+            - Path=/agent-name/**
+        - id: loan-service
+          uri: lb://loan-service
+          predicates:
+            - Path=/loans/**
+        - id: transaction-service
+          uri: lb://transaction-service
+          predicates:
+            - Path=/transactions/**
+

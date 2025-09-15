@@ -1,0 +1,7 @@
+server:
+  port: ${AUTH_SERVICE_PORT:8087} # Make port configurable via environment variable, default to 8087
+
+spring:
+  application:
+    name: auth-service
+

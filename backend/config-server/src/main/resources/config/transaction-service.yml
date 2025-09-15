@@ -1,0 +1,7 @@
+server:
+  port: ${TRANSACTION_SERVICE_PORT:8084} # Make port configurable via environment variable, default to 8081
+
+spring:
+  application:
+    name: transaction-service
+

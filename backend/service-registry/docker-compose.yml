@@ -1,0 +1,15 @@
+services:
+  service-registry:
+    container_name: service-registry
+    build: .
+    ports:
+      - "${SERVICE_REGISTRY_PORT}:${SERVICE_REGISTRY_PORT}"
+    environment:
+      EUREKA_HOST: service-registry
+      EUREKA_PORT: ${SERVICE_REGISTRY_PORT}
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    external: true
