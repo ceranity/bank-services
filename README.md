@@ -1,13 +1,9 @@
 
-# Digital Bank
 
-Welcome to the Digital Bank project! This application is designed to provide a scalable digital banking platform with core features such as user management, accounts, loans, cards, transactions, and an agent name generator.
 
-## Project Structure
+Welcome to this project! This application is designed to provide a scalable digital banking platform with core features such as user management, accounts, loans, cards, transactions, and an agent name generator.
 
-<!-- Image of overall backend design -->
 
-<!-- ![Digital Bank](images/digital-bank-backend-architecture.jpg) -->
 
 ### Features
 
@@ -53,8 +49,8 @@ Welcome to the Digital Bank project! This application is designed to provide a s
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-repository/digital-bank.git
-   cd digital-bank
+   git clone https://github.com/your-repository/bank-services.git
+   cd bank-services
    ```
 
 2. **Build and Start the Application**
