@@ -61,23 +61,6 @@ Welcome to this project! This application is designed to provide a scalable digi
    docker-compose up --build
    ```
 
-3. **Environment Variables**
-
-   Create a `.env` file and include the following variables:
-
-   ```bash
-   # .env file
-   POSTGRES_DB=postgres
-   POSTGRES_USER=postgres
-   POSTGRES_PASSWORD=postgres
-
-   SERVICE_PORT=8080
-   DB_PORT=5432
-   PROFILE=prod
-
-   JWT_SECRET_KEY=your-string-jwt-secret-key-here
-   SPRING_PROFILES_ACTIVE=prod
-   ```
 
 4. **Access the Application**
 
